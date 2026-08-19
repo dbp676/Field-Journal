@@ -2363,6 +2363,10 @@ function initMap(){
   drawAll();
   renderMapTools();
 
+  let tileErr=0, tileOk=0;
+  MAP.on('tileerror', ()=>{ tileErr++; if(tileErr>3 && !tileOk) showTileWarning(); });
+  MAP.on('tileload',  ()=>{ tileOk++; const b=$('#tilewarn'); if(b) b.remove(); });
+
   MAP.on('click', ev=>{
     if(dropMode){ dropMode=false; renderMapTools(); wptForm({lat:ev.latlng.lat, lng:ev.latlng.lng}); }
     else if(drawMode){
@@ -2384,7 +2388,7 @@ function setBase(k){
 function renderMapTools(){
   $('#maptools').innerHTML=`
     <button class="mt" id="mt_area">📍 Area</button>
-    <button class="mt" id="mt_base">🗺 ${BASEMAPS[DB.settings.basemap]?.name||'Topo'}</button>
+    <button class="mt" id="mt_base">🗺 Layer: ${BASEMAPS[DB.settings.basemap]?.name||'Topo'} ▾</button>
     <button class="mt ${dropMode?'on':''}" id="mt_drop">${dropMode?'Tap the map…':'+ Waypoint'}</button>
     <button class="mt ${drawMode?'on':''}" id="mt_draw">${drawMode?`Route (${drawPts.length}) — tap to add`:'+ Route'}</button>
     ${drawMode?`<button class="mt on" id="mt_done">✓ Finish</button><button class="mt" id="mt_cancel">✕</button>`:''}`;
@@ -2621,6 +2625,98 @@ function parseGeo(text, fname){
   return {w,r,dupW,dupR};
 }
 
+function showTileWarning(){
+  if($('#tilewarn')) return;
+  const el=document.createElement('button');
+  el.id='tilewarn';
+  el.style.cssText='position:absolute;left:10px;right:10px;top:52px;z-index:650;'+
+    'background:rgba(181,86,74,.95);color:#fff;border:none;border-radius:9px;padding:10px 12px;'+
+    'font-size:12.5px;text-align:left;line-height:1.45;box-shadow:0 3px 14px rgba(0,0,0,.5)';
+  el.innerHTML='⚠️ <b>Map tiles aren\'t loading.</b> Tap to run diagnostics.';
+  el.onclick=diagnoseTiles;
+  $('#v-map').appendChild(el);
+}
+
+/* Probe the tile pipeline the same way Leaflet does, and report plainly. */
+function diagnoseTiles(){
+  const b=BASEMAPS[DB.settings.basemap]||BASEMAPS.topo;
+  const url=b.url.replace('{s}','a').replace('{z}',10).replace('{x}',205).replace('{y}',397);
+  sheet('Map diagnostics',
+    `<div class="dim" style="margin-bottom:12px">Testing <b>${esc(b.name)}</b><br>${esc(url)}</div>
+     <div id="dg"></div>`,
+    `<button class="btn ghost" id="dgx">Close</button><button class="btn" id="dgreset">Reset map cache</button>`,
+    async ()=>{
+      $('#dgx').onclick=closeSheet;
+      $('#dgreset').onclick=resetMapCache;
+      const rows=[];
+      const put=()=> $('#dg').innerHTML=rows.map(r=>
+        `<div class="row" style="align-items:flex-start;margin-bottom:9px">
+          <span style="flex:0 0 auto">${r.ok===null?'⏳':r.ok?'✅':'❌'}</span>
+          <span class="muted"><b>${esc(r.k)}</b><br>${esc(r.v)}</span></div>`).join('');
+
+      const add=(k,ok,v)=>{ rows.push({k,ok,v}); put(); };
+
+      add('Network', navigator.onLine, navigator.onLine?'Browser reports online':'Browser reports OFFLINE — tiles cannot download');
+      const sw = navigator.serviceWorker?.controller;
+      add('Service worker', true, sw ? 'Active and intercepting requests' : 'Not controlling this page');
+
+      // 1. plain <img>, exactly how Leaflet loads a tile
+      const imgResult = await new Promise(res=>{
+        const im=new Image(); const t0=Date.now();
+        const done=v=>res(v);
+        im.onload =()=>done({ok:true, ms:Date.now()-t0, w:im.naturalWidth});
+        im.onerror=()=>done({ok:false, ms:Date.now()-t0});
+        setTimeout(()=>done({ok:false, ms:Date.now()-t0, timeout:true}), 12000);
+        im.src=url+'?diag='+Date.now();
+      });
+      add('Tile as image', imgResult.ok,
+        imgResult.ok ? `Loaded ${imgResult.w}px in ${imgResult.ms}ms — the tile server is reachable`
+        : imgResult.timeout ? 'Timed out after 12s — blocked, or the connection is very slow'
+        : `Failed in ${imgResult.ms}ms — blocked by the network, a content blocker, or DNS`);
+
+      // 2. fetch, which is what the service worker uses
+      let fr;
+      try{
+        const t0=Date.now();
+        const r=await fetch(url+'?diag2='+Date.now(), {mode:'no-cors'});
+        fr={ok:true, type:r.type, status:r.status, ms:Date.now()-t0};
+      }catch(err){ fr={ok:false, msg:err.message}; }
+      add('Tile via fetch', fr.ok,
+        fr.ok ? `${fr.type} response, status ${fr.status}, ${fr.ms}ms`
+              : `Threw: ${fr.msg}`);
+
+      // 3. what's actually cached
+      try{
+        const ks=await caches.keys();
+        const tk=ks.find(k=>k.includes('tiles'));
+        const n=tk ? (await (await caches.open(tk)).keys()).length : 0;
+        add('Offline tile cache', true, n ? `${n} tiles stored` : 'Empty — nothing downloaded yet');
+      }catch(err){ add('Offline tile cache', false, err.message); }
+
+      const imgOk=rows[2].ok, fetchOk=rows[3].ok;
+      let verdict;
+      if(!navigator.onLine) verdict='You are offline and this area has not been downloaded. Connect to wifi and use ⇩ Offline to save it.';
+      else if(imgOk && !fetchOk) verdict='Images load but fetch is blocked — the service worker is the problem. Tap "Reset map cache" below.';
+      else if(!imgOk && !fetchOk) verdict='The tile server is unreachable from this device. Likely a content blocker, a VPN, or restrictive DNS. Try a different basemap, or turn off any ad/tracker blocking for this site.';
+      else if(imgOk && fetchOk) verdict='The pipeline is healthy — tiles should be drawing. If the map still looks black, tap "Reset map cache" and reload.';
+      $('#dg').insertAdjacentHTML('beforeend',
+        `<div class="warnbar" style="margin-top:6px">${esc(verdict)}</div>`);
+    });
+}
+
+async function resetMapCache(){
+  try{
+    const ks=await caches.keys();
+    await Promise.all(ks.filter(k=>k.includes('tiles')).map(k=>caches.delete(k)));
+    if(navigator.serviceWorker){
+      const rs=await navigator.serviceWorker.getRegistrations();
+      await Promise.all(rs.map(r=>r.unregister()));
+    }
+    toast('Cleared — reloading');
+    setTimeout(()=>location.reload(), 700);
+  }catch(e){ toast('Reset failed: '+e.message); }
+}
+
 /* ---------- offline tile download ---------- */
 const SW = { reg:null, ready:false };
 
@@ -2664,12 +2760,14 @@ function offlineMaps(){
     <div class="divider"></div>
     <div class="row" style="justify-content:space-between">
       <span class="muted" id="tstat">Checking cache…</span>
+      <button class="btn ghost sm" id="tdiag" style="margin-right:6px">Diagnose</button>
       <button class="btn ghost sm" id="tclear">Clear</button>
     </div>`,
     `<button class="btn ghost full" id="ox2">Done</button>`,
     ()=>{
       $('#ox2').onclick=closeSheet;
       navigator.serviceWorker.controller?.postMessage({type:'TILE_STATS'});
+      $('#tdiag').onclick=diagnoseTiles;
       $('#tclear').onclick=()=>{
         if(!confirm('Delete all downloaded map tiles?')) return;
         navigator.serviceWorker.controller?.postMessage({type:'CLEAR_TILES'}); };
