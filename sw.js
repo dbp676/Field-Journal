@@ -3,7 +3,7 @@
    - regs data: network-first so updates land, cache as fallback
    - map tiles: cache-first, persisted forever so downloaded country works offline
 */
-const VERSION   = 'fj-v1';
+const VERSION   = 'fj-v2';
 const SHELL     = `${VERSION}-shell`;
 const TILES     = `${VERSION}-tiles`;
 const DATA      = `${VERSION}-data`;
@@ -59,11 +59,14 @@ self.addEventListener('fetch', e => {
         const hit = await cache.match(req);
         if (hit) return hit;
         try {
-          const res = await fetch(req, { mode: 'cors' });
+          // Do NOT override the request mode. Leaflet fetches tiles as images
+          // (no-cors); forcing 'cors' makes every tile server that omits
+          // Access-Control-Allow-Origin fail, which blanks the whole map.
+          const res = await fetch(req);
           if (res && (res.ok || res.type === 'opaque')) cache.put(req, res.clone());
           return res;
         } catch (err) {
-          return hit || new Response('', { status: 504 });
+          return new Response('', { status: 504 });
         }
       })
     );
@@ -116,8 +119,11 @@ self.addEventListener('message', async e => {
         try {
           if (await cache.match(u)) { done++; }
           else {
-            const res = await fetch(u, { mode: 'cors' });
-            if (res && (res.ok || res.type === 'opaque')) { await cache.put(u, res.clone()); done++; }
+            // no-cors so tile servers without CORS headers still prefetch;
+            // the opaque response caches fine and serves to <img> later.
+            const rq = new Request(u, { mode: 'no-cors' });
+            const res = await fetch(rq);
+            if (res && (res.ok || res.type === 'opaque')) { await cache.put(rq, res.clone()); done++; }
             else failed++;
           }
         } catch (err) { failed++; }
