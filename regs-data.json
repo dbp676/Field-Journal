@@ -1,0 +1,158 @@
+{
+  "version": "2026.1",
+  "updated": "2026-08-19",
+  "note": "Season dates and fees verified against CPW 2025-2029 Big Game Season Structure, WGFD Chapter 7 regulations, and official fee schedules as of 2026-08-19. ALWAYS confirm against the official brochure before applying or hunting.",
+  "states": [
+    {
+      "code": "CO",
+      "name": "Colorado",
+      "agency": "Colorado Parks and Wildlife",
+      "agencyShort": "CPW",
+      "home": "https://cpw.state.co.us/hunting/big-game",
+      "brochure": "https://cpw.widen.net/s/5wvx7rggrd/colorado-big-game-hunting-brochure",
+      "fishingRegs": "https://www.eregulations.com/colorado/fishing",
+      "drawResults": "https://cpw.state.co.us/hunting/big-game",
+      "seasons": [
+        { "species": "Elk", "method": "Archery", "dates": "Sep 2 – Sep 30, 2026", "note": "29-day fixed season. OTC for residents in eligible units; nonresidents draw-only west of I-25.", "tag": "OTC / Draw" },
+        { "species": "Elk", "method": "Muzzleloader", "dates": "Sep 12 – Sep 20, 2026", "note": "Opens 2nd Saturday in September, 9 days. Draw only — no OTC.", "tag": "Draw" },
+        { "species": "Elk", "method": "Rifle 1st", "dates": "Oct 14 – Oct 18, 2026", "note": "5 days, opens first Wednesday after Oct 8. Elk-primary, limited/draw.", "tag": "Draw" },
+        { "species": "Elk", "method": "Rifle 2nd", "dates": "Oct 24 – Nov 1, 2026", "note": "9 days, deer + elk combined. OTC in many units.", "tag": "OTC / Draw" },
+        { "species": "Elk", "method": "Rifle 3rd", "dates": "Nov 7 – Nov 15, 2026", "note": "9 days, deer + elk combined. OTC in many units.", "tag": "OTC / Draw" },
+        { "species": "Elk", "method": "Rifle 4th", "dates": "Nov 18 – Nov 22, 2026", "note": "5 days, combined. Draw only.", "tag": "Draw" },
+        { "species": "Bear", "method": "September Rifle", "dates": "Sep 2 – Sep 30, 2026", "note": "28-day fixed September rifle season.", "tag": "Draw" },
+        { "species": "Bear", "method": "Archery", "dates": "Sep 2 – Sep 30, 2026", "note": "Concurrent with archery elk.", "tag": "Draw" },
+        { "species": "Bear", "method": "Muzzleloader", "dates": "Sep 12 – Sep 20, 2026", "note": "Concurrent with muzzleloader deer/elk.", "tag": "Draw" },
+        { "species": "Bear", "method": "Concurrent Rifle", "dates": "Oct 14–18, Oct 24–Nov 1, Nov 7–15, Nov 18–22, 2026", "note": "Runs with the four combined deer/elk rifle seasons.", "tag": "OTC w/ caps" },
+        { "species": "Pronghorn", "method": "Archery", "dates": "Aug 15 – Sep 20, 2026", "note": "Bucks only Aug 15–31; either-sex Sep 1–20.", "tag": "Draw" },
+        { "species": "Pronghorn", "method": "Muzzleloader", "dates": "Sep 21 – Sep 29, 2026", "note": "9-day fixed September season.", "tag": "Draw" },
+        { "species": "Pronghorn", "method": "Rifle", "dates": "Oct 3 – Oct 11, 2026", "note": "9 days, opens first Saturday in October.", "tag": "Draw" }
+      ],
+      "deadlines": [
+        { "label": "Primary draw application window", "date": "Mar 1 – Apr 7, 2026" },
+        { "label": "Primary draw results posted", "date": "May 26 – 29, 2026" },
+        { "label": "Secondary draw", "date": "Jun 30, 2026" },
+        { "label": "Leftover / unlimited licenses on sale", "date": "Aug 4, 2026" }
+      ],
+      "points": {
+        "type": "True preference point system",
+        "summary": "Highest points draw first — a straight line, not a lottery. You earn one point for each year you apply unsuccessfully, or by submitting a point-only application. Points zero out when you draw your FIRST-CHOICE hunt code. Second, third, and fourth choices do not use your points, so you can chase a low-demand backup without burning your stack.",
+        "rules": [
+          "Points apply to your first choice only. Later choices are effectively a random leftover draw.",
+          "Drawing your first choice resets that species' points to zero. Drawing a 2nd–4th choice does NOT burn points.",
+          "A point-only application costs the application fee and banks a point without any chance of drawing.",
+          "Hunt codes that take 6+ points for residents cap nonresidents at 20% of licenses; everything else allows up to 25%.",
+          "You must hold a qualifying license (small game or equivalent) to apply.",
+          "Bear, pronghorn, elk, and deer each track points separately."
+        ]
+      },
+      "fees": [
+        { "item": "Resident qualifying license (annual)", "cost": "$38.49" },
+        { "item": "Nonresident qualifying license (annual)", "cost": "$104.86" },
+        { "item": "Application fee — resident", "cost": "$8.93 per species" },
+        { "item": "Application fee — nonresident", "cost": "$11.49 per species" },
+        { "item": "Habitat stamp (ages 18–64)", "cost": "$12.76" },
+        { "item": "Fishing — resident annual (18–63)", "cost": "$42.91" },
+        { "item": "Fishing — resident senior (64+)", "cost": "$11.73" },
+        { "item": "Fishing — youth (16–17)", "cost": "$11.73" },
+        { "item": "Fishing — one day", "cost": "$16.72" },
+        { "item": "Fishing — additional day", "cost": "$7.99" },
+        { "item": "Second rod stamp", "cost": "$12.98" },
+        { "item": "Aquatic Nuisance Species stamp (annual)", "cost": "$25.00" }
+      ],
+      "units": [
+        { "id": "74", "name": "GMU 74", "region": "Durango / San Juan", "desc": "La Plata & San Juan counties. Core Durango-area unit north and east of town — Hermosa Creek country, Missionary Ridge, upper Animas drainages.", "species": "Elk, Bear, Deer" },
+        { "id": "75", "name": "GMU 75", "region": "Durango / San Juan", "desc": "La Plata & San Juan counties. Heavy San Juan NF timber, Vallecito and Pine River drainages, Weminuche Wilderness edge.", "species": "Elk, Bear, Deer" },
+        { "id": "751", "name": "GMU 751", "region": "Durango / San Juan", "desc": "Paired with 75, generally the lower-elevation and more private-land-influenced portion. Popular DIY unit.", "species": "Elk, Bear, Deer" },
+        { "id": "77", "name": "GMU 77", "region": "Piedra / Pagosa west", "desc": "Piedra River country between Durango and Pagosa Springs.", "species": "Elk, Bear, Deer" },
+        { "id": "771", "name": "GMU 771", "region": "Piedra / Pagosa west", "desc": "Adjacent to 77, lower country toward Chimney Rock and the Piedra confluence.", "species": "Elk, Bear, Deer" },
+        { "id": "78", "name": "GMU 78", "region": "Pagosa / Navajo", "desc": "East of the Piedra toward Pagosa Springs and the Navajo River.", "species": "Elk, Bear, Deer" },
+        { "id": "781", "name": "GMU 781", "region": "Pagosa / Navajo", "desc": "Adjacent to 78, toward the New Mexico line.", "species": "Elk, Bear, Deer" },
+        { "id": "73", "name": "GMU 73", "region": "Dolores / Rico", "desc": "Northwest of Durango toward Rico and the Dolores River.", "species": "Elk, Bear, Deer" },
+        { "id": "80", "name": "GMU 80", "region": "Cortez / Dolores", "desc": "Open sage and pinyon-juniper country west of Durango — primary pronghorn ground in the Four Corners region.", "species": "Pronghorn, Elk, Deer" },
+        { "id": "81", "name": "GMU 81", "region": "Cortez / Dolores", "desc": "Adjacent to 80, similar open country. Limited pronghorn draw.", "species": "Pronghorn, Elk, Deer" }
+      ],
+      "waters": [
+        { "name": "Animas River", "type": "Freestone / tailwater below Durango", "note": "Gold Medal water through town. Browns and rainbows. Runoff typically blows it out May–June." },
+        { "name": "Vallecito Reservoir & Creek", "type": "Reservoir + inlet stream", "note": "Kokanee, northern pike, browns, rainbows. Inlet fishes well in fall." },
+        { "name": "Lemon Reservoir / Florida River", "type": "Reservoir + tailwater", "note": "Close to Durango, stocked rainbows, some browns below the dam." },
+        { "name": "Piedra River", "type": "Freestone", "note": "Wild browns and rainbows in a rugged canyon. Access via First Fork and Piedra Rd." },
+        { "name": "Navajo Reservoir / San Juan (CO side)", "type": "Reservoir", "note": "Warmwater and trout mix; the famous San Juan quality water is below the dam in New Mexico." },
+        { "name": "Weminuche high lakes", "type": "Alpine lakes", "note": "Cutthroat and brookies, ice-off through September." }
+      ]
+    },
+    {
+      "code": "WY",
+      "name": "Wyoming",
+      "agency": "Wyoming Game & Fish Department",
+      "agencyShort": "WGFD",
+      "home": "https://wgfd.wyo.gov/hunting",
+      "brochure": "https://wgfd.wyo.gov/media/32323/download?inline=",
+      "fishingRegs": "https://wgfd.wyo.gov/fishing-boating",
+      "drawResults": "https://wgfd.wyo.gov/licenses-applications/draw-results-odds",
+      "seasons": [
+        { "species": "Elk", "method": "Archery (general)", "dates": "Sep 1 – Sep 30, 2026", "note": "Archery period precedes the rifle season in most areas. Requires archery permit.", "tag": "General / Limited" },
+        { "species": "Elk", "method": "Rifle (general, Snowy Range / Sierra Madre)", "dates": "Oct 15 – Oct 31, 2026", "note": "Typical general-license rifle window in Areas 10, 13, 15, 21. Antlerless extension Nov 1–7 in several areas.", "tag": "General" },
+        { "species": "Elk", "method": "Rifle (Pole Mountain, Area 6)", "dates": "Oct 1 – Oct 31, 2026", "note": "Longer general window close to Laramie. Limited-quota Type 1 also available.", "tag": "General / Limited" },
+        { "species": "Elk", "method": "Rifle (Laramie Peak, Area 7)", "dates": "Oct 15 – Nov 30, 2026", "note": "Large limited-quota Type 1 allocation. Type 2 antlered (5 points or less) Nov 21 – Dec 31.", "tag": "Limited" },
+        { "species": "Elk", "method": "Cow/calf (Type 6/7/8)", "dates": "Aug 15 – Jan 31, 2026-27 (varies)", "note": "Area-specific antlerless and private-land seasons. Check the area listing.", "tag": "Limited" },
+        { "species": "Pronghorn", "method": "Archery", "dates": "Aug 15 – Sep 30, 2026 (typical)", "note": "Archery period runs ahead of the rifle opener; exact dates vary by hunt area.", "tag": "Limited" },
+        { "species": "Pronghorn", "method": "Rifle", "dates": "Sep 15 – Oct 31, 2026 (varies by area)", "note": "All Wyoming pronghorn is limited quota. Dates and quotas are set per hunt area.", "tag": "Limited" },
+        { "species": "Bear", "method": "Spring", "dates": "May 1 – Jun 30, 2026 (varies by BMU)", "note": "Mortality-quota driven — areas close mid-season when the female quota is hit. Call the hotline before you go.", "tag": "Quota" },
+        { "species": "Bear", "method": "Fall", "dates": "Sep 1 – Oct 31, 2026 (varies by BMU)", "note": "Same quota-closure system. Baiting legal in Wyoming with restrictions.", "tag": "Quota" }
+      ],
+      "deadlines": [
+        { "label": "Nonresident elk application deadline", "date": "Feb 2, 2026" },
+        { "label": "Nonresident elk modify / withdraw", "date": "through May 8, 2026" },
+        { "label": "Moose, bighorn, mountain goat", "date": "Apr 30, 2026" },
+        { "label": "Bison application window", "date": "Mar 2 – Apr 30, 2026" },
+        { "label": "Deer & pronghorn (res + nonres), resident elk", "date": "Jun 1, 2026" },
+        { "label": "Leftover / reduced-price draw", "date": "Jun 26, 2026" },
+        { "label": "Preference point purchase window", "date": "Jul 1 – Nov 2, 2026" }
+      ],
+      "points": {
+        "type": "Preference points — nonresident only for elk/deer/pronghorn",
+        "summary": "Wyoming splits limited-quota nonresident licenses 75/25: three quarters go to the preference-point draw (highest points first) and one quarter to a pure random draw, so a zero-point applicant always has a shot. Residents do NOT use preference points for elk, deer, or pronghorn — resident draws are fully random.",
+        "rules": [
+          "75% of nonresident limited-quota licenses go to the point draw; 25% are random.",
+          "Drawing your first-choice license zeroes your points for that species.",
+          "Miss applying AND miss buying a point for two consecutive years and you lose that species' points entirely.",
+          "You can buy points July 1 – November 2 without holding a hunting license.",
+          "Special vs. regular draw: paying the higher 'special' license price puts you in a separate, usually shallower, applicant pool.",
+          "Residents: elk, deer, and pronghorn limited quota are random — no points to build."
+        ]
+      },
+      "fees": [
+        { "item": "Nonresident elk license", "cost": "~$692" },
+        { "item": "Nonresident pronghorn license", "cost": "~$326" },
+        { "item": "Conservation stamp (12-month)", "cost": "$21.50" },
+        { "item": "Application fee — resident", "cost": "$5 (+2.5% processing)" },
+        { "item": "Application fee — nonresident", "cost": "$15 (+2.5% processing)" },
+        { "item": "Archery permit — nonresident", "cost": "$72" },
+        { "item": "Fishing — resident annual", "cost": "$27" },
+        { "item": "Fishing — nonresident annual", "cost": "$102" },
+        { "item": "Fishing — nonresident daily", "cost": "$14" },
+        { "item": "Fishing — nonresident 5 consecutive days", "cost": "$56" },
+        { "item": "Fishing — resident daily", "cost": "$6" },
+        { "item": "Fishing — youth (under 18, nonres)", "cost": "$15" }
+      ],
+      "units": [
+        { "id": "6", "name": "Elk Area 6 — Pole Mountain", "region": "Laramie", "desc": "Immediately east of Laramie between US 30/287 and I-25 to the Colorado line. General plus limited Type 1 (50), Type 4 antlerless (25), and unlimited Type 8 cow/calf off national forest.", "species": "Elk" },
+        { "id": "7", "name": "Elk Area 7 — Laramie Peak", "region": "Laramie / Medicine Bow", "desc": "Large area from Glenrock south and west. Big limited-quota allocation: Type 1 (1,500), Type 2 antlered 5-point-or-less (350), Type 6 cow/calf (2,000), Type 8 private-land cow/calf.", "species": "Elk" },
+        { "id": "8", "name": "Elk Area 8 — Boulder Ridge", "region": "Laramie", "desc": "South of Laramie between US 287 and WY 10. Type 1 limited (150) plus unlimited Type 8 cow/calf. Long Oct 1 – Jan 31 rifle window.", "species": "Elk" },
+        { "id": "10", "name": "Elk Area 10 — Rock Creek", "region": "Snowy Range", "desc": "West of Laramie along WY 130 to the Laramie/Medicine Bow river divide. General license area — rifle Oct 15–31, antlerless Nov 1–7. Type 6 cow/calf (300).", "species": "Elk" },
+        { "id": "13", "name": "Elk Area 13 — Encampment River", "region": "Sierra Madre / Encampment", "desc": "Continental Divide at the Colorado line north to WY 70. General license — archery Sep 1–30, rifle Oct 15–31, antlerless Nov 1–7. Type 6 cow/calf (150).", "species": "Elk" },
+        { "id": "15", "name": "Elk Area 15 — Spring Creek", "region": "Sierra Madre / Encampment", "desc": "Sage Creek Rd (CR 401) at the Divide north to the North Platte. General license, same Oct 15–31 rifle window. Type 6 cow/calf (200).", "species": "Elk" },
+        { "id": "16", "name": "Elk Area 16 — Shirley Mountain", "region": "Medicine Bow / Shirley Basin", "desc": "Between Laramie Peak and Shirley Ridge, I-80 at the North Platte to WY 220. All limited quota — Types 1, 2, 4, 6, 7 with staggered Oct–Jan windows.", "species": "Elk" },
+        { "id": "21", "name": "Elk Area 21 — Baggs", "region": "Sierra Madre west", "desc": "WY 789 at the Colorado line north to Muddy Creek. Sierra Madre elk herd. General license — rifle Oct 15–31, youth-only Oct 11–12. Type 6 cow/calf (200).", "species": "Elk" }
+      ],
+      "waters": [
+        { "name": "North Platte River — Encampment to Saratoga", "type": "Freestone / tailwater", "note": "Blue-ribbon brown and rainbow water. Treasure Island, Bennett Peak, and the Miracle Mile upstream. Best after runoff drops, late June onward." },
+        { "name": "Encampment River", "type": "Small freestone", "note": "Wilderness canyon section above town holds wild browns and brookies. Steep access." },
+        { "name": "Snowy Range alpine lakes (Libby, Lewis, Marie, Mirror)", "type": "Alpine lakes", "note": "Brookies, cutthroat, splake, golden trout in select lakes. WY 130 closes in winter — typically open late May/June through October." },
+        { "name": "Laramie River", "type": "Meadow freestone", "note": "Browns and rainbows; much of the good water is private, check WGFD walk-in and HMA access." },
+        { "name": "Lake Hattie / Twin Buttes", "type": "Reservoirs", "note": "West of Laramie. Rainbows, browns, and kokanee. Wind is the deciding factor." },
+        { "name": "Medicine Bow River", "type": "Prairie freestone", "note": "Browns in the upper reaches near the Snowies; warms up considerably downstream." }
+      ]
+    }
+  ]
+}
